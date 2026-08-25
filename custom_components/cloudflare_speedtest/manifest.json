@@ -1,0 +1,13 @@
+{
+  "domain": "cloudflare_speedtest",
+  "name": "Cloudflare Speed Test",
+  "codeowners": ["@ShaunSHamilton"],
+  "config_flow": true,
+  "documentation": "https://github.com/ShaunSHamilton/ha-cloudflare-speedtest",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/ShaunSHamilton/ha-cloudflare-speedtest/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.1.0"
+}

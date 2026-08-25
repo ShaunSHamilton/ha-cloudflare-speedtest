@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.14"
+          cache: pip
+      - name: Install test tools
+        run: pip install pytest-homeassistant-custom-component==0.13.357 ruff==0.16.4
+      - name: Check formatting
+        run: ruff format --check .
+      - name: Lint
+        run: ruff check .
+      - name: Compile Python
+        run: python -m compileall -q custom_components tests
+      - name: Run tests
+        run: pytest

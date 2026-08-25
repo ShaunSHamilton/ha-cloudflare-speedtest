@@ -1,0 +1,43 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Cloudflare Speed Test",
+        "description": "Measure internet speed against speed.cloudflare.com. Each test transfers up to 9 MB.",
+        "data": {"interval_minutes": "Test interval (minutes)"}
+      }
+    },
+    "abort": {"single_instance_allowed": "Cloudflare Speed Test is already configured."}
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Cloudflare Speed Test options",
+        "data": {"interval_minutes": "Test interval (minutes)"}
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "problem": {"name": "Problem"},
+      "testing": {"name": "Testing"}
+    },
+    "button": {"run_test": {"name": "Run test now"}},
+    "sensor": {
+      "download": {"name": "Download"},
+      "upload": {"name": "Upload"},
+      "latency": {"name": "Latency"},
+      "jitter": {"name": "Jitter"},
+      "test_data": {"name": "Last test data"},
+      "total_data": {"name": "Total data used"},
+      "projected_monthly_data": {"name": "Projected monthly data"},
+      "last_test": {"name": "Last test"},
+      "next_test": {"name": "Next test"},
+      "status": {
+        "name": "Status",
+        "state": {"ok": "OK", "testing": "Testing", "failed": "Failed", "unknown": "Unknown"}
+      }
+    },
+    "switch": {"pause": {"name": "Pause schedule"}}
+  }
+}

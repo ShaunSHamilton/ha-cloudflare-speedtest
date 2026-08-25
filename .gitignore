@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.vscode/
+.idea/
+.DS_Store
+config/
+home-assistant.log*
+home-assistant_v2.db*
+.storage/
