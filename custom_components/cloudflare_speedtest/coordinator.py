@@ -12,7 +12,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.storage import Store
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
-from .const import CONF_INTERVAL, DEFAULT_INTERVAL, DOMAIN
+from .const import CONF_INTERVAL, DOMAIN, default_options
 from .engine import CloudflareSpeedTest, SpeedTestResult
 
 _STORE_VERSION = 1
@@ -32,15 +32,14 @@ class SpeedTestCoordinator(DataUpdateCoordinator[SpeedTestResult | None]):
 
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry[Any]) -> None:
         self.entry = entry
+        self.options = {**default_options(), **entry.data, **entry.options}
         self.testing = False
         self.paused = bool(entry.options.get("paused", False))
         self.total_bytes = 0
         self.test_count = 0
         self.last_run: datetime | None = None
         self._store = Store[dict[str, Any]](hass, _STORE_VERSION, f"{DOMAIN}.{entry.entry_id}")
-        interval = int(
-            entry.options.get(CONF_INTERVAL, entry.data.get(CONF_INTERVAL, DEFAULT_INTERVAL))
-        )
+        interval = int(self.options[CONF_INTERVAL])
         super().__init__(
             hass,
             logger=_LOGGER,
@@ -81,7 +80,7 @@ class SpeedTestCoordinator(DataUpdateCoordinator[SpeedTestResult | None]):
         self.testing = True
         self.async_update_listeners()
         try:
-            result = await self._engine.async_run()
+            result = await self._engine.async_run(self.options)
         finally:
             self.testing = False
         self.last_run = result.timestamp

@@ -5,12 +5,14 @@ Home Assistant custom integration measuring internet download speed, upload spee
 ## Features
 
 - Automatic tests every 5 minutes to 24 hours
+- Configurable download/upload target durations and data ceilings
+- Configurable parallel streams, latency samples, safety timeout, and transfer chunk sizes
 - Manual **Run test now** button
 - Pause switch
 - Download, upload, latency, jitter, latest test traffic, cumulative traffic, projected monthly traffic, timestamps, status, problem, and running entities
 - Persisted cumulative traffic across restarts
 
-Each test transfers up to 6 MB down and 3 MB up. Results stay in Home Assistant; use built-in history graphs or custom dashboard cards for visualization.
+Default test transfers up to 6 MB down and 3 MB up. Each direction stops when its target duration or data ceiling is reached first. Results stay in Home Assistant; use built-in history graphs or custom dashboard cards for visualization.
 
 ## Install with HACS
 

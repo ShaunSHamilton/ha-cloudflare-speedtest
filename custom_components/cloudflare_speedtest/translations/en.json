@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Cloudflare Speed Test",
-        "description": "Measure internet speed against speed.cloudflare.com. Each test transfers up to 9 MB.",
+        "description": "Measure internet speed against speed.cloudflare.com. Configure transfer limits after setup.",
         "data": {"interval_minutes": "Test interval (minutes)"}
       }
     },
@@ -13,7 +13,42 @@
     "step": {
       "init": {
         "title": "Cloudflare Speed Test options",
-        "data": {"interval_minutes": "Test interval (minutes)"}
+        "sections": {
+          "schedule": {
+            "name": "Schedule",
+            "data": {"interval_minutes": "Test interval (minutes)"}
+          },
+          "measurement": {
+            "name": "Measurement",
+            "data": {
+              "download_seconds": "Download target duration (seconds)",
+              "upload_seconds": "Upload target duration (seconds)",
+              "max_download_bytes": "Maximum download data (bytes)",
+              "max_upload_bytes": "Maximum upload data (bytes)",
+              "streams": "Parallel streams",
+              "max_test_seconds": "Hard limit per direction (seconds)",
+              "latency_samples": "Latency samples"
+            },
+            "data_description": {
+              "download_seconds": "Download stops when this duration or maximum data is reached first.",
+              "upload_seconds": "Upload stops when this duration or maximum data is reached first.",
+              "max_download_bytes": "Total ceiling split across all download streams.",
+              "max_upload_bytes": "Total ceiling split across all upload streams.",
+              "max_test_seconds": "Safety timeout for each transfer direction."
+            }
+          },
+          "advanced": {
+            "name": "Advanced transfer settings",
+            "data": {
+              "read_chunk_bytes": "Download read chunk (bytes)",
+              "write_chunk_bytes": "Upload write chunk (bytes)"
+            },
+            "data_description": {
+              "read_chunk_bytes": "Smaller chunks stop closer to target duration but add overhead.",
+              "write_chunk_bytes": "Smaller chunks stop closer to target duration but add overhead."
+            }
+          }
+        }
       }
     }
   },
