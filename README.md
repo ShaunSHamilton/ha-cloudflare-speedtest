@@ -12,7 +12,11 @@ Home Assistant custom integration measuring internet download speed, upload spee
 - Download, upload, latency, jitter, latest test traffic, cumulative traffic, projected monthly traffic, timestamps, status, problem, and running entities
 - Persisted cumulative traffic across restarts
 
-Default test transfers up to 6 MB down and 3 MB up. Each direction stops when its target duration or data ceiling is reached first. Results stay in Home Assistant; use built-in history graphs or custom dashboard cards for visualization.
+Default test transfers up to 6 MB down and 3 MB up. Each direction stops when its target duration or data ceiling is reached first. Results stay in Home Assistant.
+
+## Dashboard cards
+
+Ready-to-paste cards cover current connection health, seven-day trends, monitoring data cost, and compact test controls. See [dashboard card examples](docs/dashboard-cards.md). Built-in options require no frontend dependency; enhanced examples identify required HACS cards.
 
 ## Install with HACS
 
