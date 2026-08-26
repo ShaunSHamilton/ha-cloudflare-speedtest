@@ -6,7 +6,8 @@
   ],
   "config_flow": true,
   "dependencies": [
-    "frontend"
+    "frontend",
+    "http"
   ],
   "documentation": "https://github.com/ShaunSHamilton/ha-cloudflare-speedtest",
   "integration_type": "service",

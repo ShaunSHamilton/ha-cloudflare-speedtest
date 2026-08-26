@@ -10,6 +10,7 @@ from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers import entity_registry as er
 
 from .const import DOMAIN, PLATFORMS
@@ -39,6 +40,8 @@ _LEGACY_OBJECT_IDS = {
 _ENTITY_ID_PREFIX = "cloudflare_speed_test_"
 _CARD_PATH = "/cloudflare_speedtest/cloudflare-speedtest-card.js"
 _CARD_VERSION = "0.5.0"
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 
 async def async_setup(hass: HomeAssistant, config: dict[str, Any]) -> bool:

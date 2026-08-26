@@ -16,7 +16,7 @@ Default test transfers up to 6 MB down and 3 MB up. Each direction stops when it
 
 ## Dashboard cards
 
-Ready-to-paste cards cover current connection health, seven-day trends, monitoring data cost, and compact test controls. See [dashboard card examples](docs/dashboard-cards.md). Built-in options require no frontend dependency; enhanced examples identify required HACS cards.
+Integration includes dependency-free cards for connection health, seven-day trends, monitoring data cost, and compact test controls. Cards load automatically and appear in Home Assistant card picker. See [dashboard card configuration](docs/dashboard-cards.md).
 
 ## Install with HACS
 

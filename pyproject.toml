@@ -23,6 +23,7 @@ ignore = ["COM812"]
 
 [dependency-groups]
 dev = [
+  "home-assistant-frontend>=20260826.0",
   "pytest-homeassistant-custom-component==0.13.357",
   "ruff==0.16.4",
 ]
