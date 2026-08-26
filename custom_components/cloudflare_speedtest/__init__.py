@@ -2,6 +2,11 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+from typing import Any
+
+from homeassistant.components.frontend import add_extra_js_url
+from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
@@ -32,6 +37,18 @@ _LEGACY_OBJECT_IDS = {
     "pause": "pause_schedule",
 }
 _ENTITY_ID_PREFIX = "cloudflare_speed_test_"
+_CARD_PATH = "/cloudflare_speedtest/cloudflare-speedtest-card.js"
+_CARD_VERSION = "0.5.0"
+
+
+async def async_setup(hass: HomeAssistant, config: dict[str, Any]) -> bool:
+    """Serve and register dependency-free dashboard cards."""
+    card_file = Path(__file__).parent / "frontend" / "cloudflare-speedtest-card.js"
+    await hass.http.async_register_static_paths(
+        [StaticPathConfig(_CARD_PATH, str(card_file), cache_headers=True)]
+    )
+    add_extra_js_url(hass, f"{_CARD_PATH}?v={_CARD_VERSION}")
+    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: SpeedTestConfigEntry) -> bool:
